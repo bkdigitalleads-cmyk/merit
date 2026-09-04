@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "Merit",
+    "slug": "merit-volunteer-hours",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.bwk.merit",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSFaceIDUsageDescription": "Merit uses Face ID to lock your volunteer log so only you can see it."
+      }
+    },
+    "android": {
+      "package": "com.bwk.merit",
+      "adaptiveIcon": {
+        "backgroundColor": "#121815",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sqlite",
+      "expo-local-authentication"
+    ],
+    "extra": {
+      "revenueCatApiKeyIos": "",
+      "eas": {
+        "projectId": "5654eba4-6423-4e86-a60e-9b7c0c7a2f5f"
+      }
+    },
+    "owner": "bkdeveloper123"
+  }
+}
