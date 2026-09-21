@@ -46,14 +46,10 @@ export default function PaywallModal({ privacyUrl }: { privacyUrl: string }) {
     (async () => {
       const off = await getOffering();
       setOffering(off);
-      // Merit is time-boxed use — an NHS year or application season, not a
-      // decade — so the one-time Lifetime purchase is the hero and default;
-      // the small yearly subscription is the anchor for price-sensitive
-      // families. The 10-entry free tier is the funnel, so there's no
-      // separate time-limited trial.
-      const lifetime =
-        off?.lifetime ?? off?.annual ?? off?.availablePackages?.[0] ?? null;
-      setSelected(lifetime);
+      // Yearly carries the free week and is the hero; Lifetime is the anchor.
+      const annual =
+        off?.annual ?? off?.lifetime ?? off?.availablePackages?.[0] ?? null;
+      setSelected(annual);
       setLoading(false);
     })();
   }, [paywallVisible]);
@@ -91,11 +87,11 @@ export default function PaywallModal({ privacyUrl }: { privacyUrl: string }) {
     }
   };
 
-  // Lifetime is the hero for this time-boxed app — show it first.
+  // Yearly is the hero — show it first, then Lifetime, then Weekly.
   const rank = (p: PurchasesPackage) =>
-    p.packageType === 'LIFETIME'
+    p.packageType === 'ANNUAL'
       ? 0
-      : p.packageType === 'ANNUAL'
+      : p.packageType === 'LIFETIME'
         ? 1
         : p.packageType === 'WEEKLY'
           ? 2
@@ -199,13 +195,13 @@ export default function PaywallModal({ privacyUrl }: { privacyUrl: string }) {
                               : p.product.title}
                       </Text>
                       {isLifetime && (
-                        <Text style={[styles.pkgBadge, { color: theme.accent }]}>
-                          Best value · pay once, keep forever
+                        <Text style={[styles.pkgBadge, { color: theme.textSecondary }]}>
+                          Or pay once, yours forever
                         </Text>
                       )}
                       {isAnnual && (
-                        <Text style={[styles.pkgBadge, { color: theme.textSecondary }]}>
-                          {trialText ? `${trialText}, then ${p.product.priceString}/yr` : monthly ? `Or ${monthly}, billed yearly` : 'Or billed yearly'}
+                        <Text style={[styles.pkgBadge, { color: theme.accent }]}>
+                          {trialText ? `Best value · ${trialText}, then ${p.product.priceString}/yr` : monthly ? `Best value · ${monthly}, billed yearly` : 'Best value · billed yearly'}
                         </Text>
                       )}
                     </View>

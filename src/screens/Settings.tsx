@@ -1,3 +1,4 @@
+import Constants from 'expo-constants';
 import React, { useState } from 'react';
 import {
   Alert,
@@ -211,7 +212,7 @@ export default function SettingsScreen() {
       </Card>
 
       <Text style={[styles.version, { color: theme.textFaint }]}>
-        Merit v1.0.0 · Made with care in NYC
+        Merit v{Constants.expoConfig?.version ?? ''} · Made with care in NYC
       </Text>
 
       <Modal
