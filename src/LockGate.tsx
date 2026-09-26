@@ -57,7 +57,7 @@ export default function LockGate({ children }: { children: React.ReactNode }) {
       <Text style={styles.emoji}>🔒</Text>
       <Text style={[styles.title, { color: theme.text }]}>Merit is locked</Text>
       <Text style={[styles.sub, { color: theme.textSecondary }]}>
-        Your driving log is protected with Face ID.
+        Your hours log is protected with Face ID.
       </Text>
       <View style={{ marginTop: 20 }}>
         <PillButton theme={theme} label="Unlock" onPress={unlock} />
